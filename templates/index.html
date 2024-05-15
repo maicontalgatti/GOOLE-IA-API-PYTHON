@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IA GOOGLE</title>
+    <style>
+        /* Adicione estilos CSS conforme necessário */
+    </style>
+</head>
+
+<body>
+    <h1>Chat</h1>
+    <div id="chat-container">
+        <div id="chat-box">
+            <!-- Aqui serão exibidas as mensagens -->
+        </div>
+        <form id="message-form">
+            <input type="text" id="user-message" placeholder="Digite sua mensagem...">
+            <button type="button" id="send-button">Enviar</button>
+
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Captura o clique no botão "Enviar"
+            $('#send-button').click(function (event) { 
+                event.preventDefault(); // Impede o comportamento padrão de recarregar a página
+
+                var userMessage = $('#user-message').val();
+                sendMessage(userMessage);
+            });
+
+              // Captura a tecla Enter
+            $('#user-message').keypress(function(event){
+                if(event.which === 13){ // 13 é o código da tecla Enter
+                    event.preventDefault(); // Impede o comportamento padrão de inserir uma quebra de linha
+                    
+                    var userMessage = $('#user-message').val();
+                    sendMessage(userMessage);
+                }
+            });
+
+            function sendMessage(message) {
+                // Exibe a mensagem do usuário no chat
+                $('#chat-box').append('<div class="user-message">' + message + '</div>');
+
+                // Envia a mensagem para o servidor Flask
+                $.ajax({
+                    url: '/',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ message: message }),
+                    success: function (response) {
+                        // Exibe a resposta do servidor no chat
+                        $('#chat-box').append('<div class="bot-message">' + response + '</div>');
+                    },
+                    error: function (error) {
+                        console.log('Erro:', error);
+                    }
+                });
+
+                // Limpa o campo de entrada após o envio da mensagem
+                $('#user-message').val('');
+            }
+        });
+    </script>
+</body>
+
+</html>
