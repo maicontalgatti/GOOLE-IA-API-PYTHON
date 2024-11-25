@@ -7,4 +7,13 @@ Insira a chave api no código e inicie um servidor flash no diretório raiz do p
 depois disso basta acessar o 'localhost:5000'.
 
 Essa é a versão beta do código, apenas para testes
- 
+
+Oque instalar:
+Flask:
+pip install flask
+
+Requests:
+pip install requests
+
+Rodar o código:
+python app.py
