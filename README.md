@@ -15,5 +15,7 @@ pip install flask
 Requests:
 pip install requests
 
-Rodar o código:
+abra um prompt em modo administrador
+
+Rode o código:
 python app.py
