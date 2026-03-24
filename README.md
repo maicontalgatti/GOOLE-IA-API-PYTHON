@@ -32,7 +32,16 @@ Antes de começar, você precisa ter instalado:
 
 2. Gere sua chave de API
 
-3. Insira a chave no código (arquivo `app.py`)
+3. Configure a chave via variável de ambiente:
+
+```powershell
+$env:GOOGLE_API_KEY="sua_chave_aqui"
+```
+
+Opcional (modelo):  
+```powershell
+$env:GOOGLE_MODEL="gemini-1.5-flash"
+```
 
 ---
 
